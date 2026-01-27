@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.2/.schema/devbox.schema.json",
+  "packages": [
+    "just@latest",
+    "nodejs@latest",
+    "prettier@latest",
+    "rustup@latest",
+    "shfmt@latest",
+    "taplo@latest",
+    "treefmt@latest"
+  ],
+  "env": {
+    "LIBRARY_PATH": "${LIBRARY_PATH}:${PWD}/.devbox/nix/profile/default/lib",
+
+    "NPM_CONFIG_CACHE": "${PWD}/.devbox/npm-cache",
+
+    "PATH": "${PATH}:${PWD}/bin",
+
+    "RUSTUP_HOME": "${PWD}/.devbox/.rustup"
+  },
+  "shell": {
+    "init_hook": ["unset DEVELOPER_DIR"],
+    "scripts": {}
+  }
+}

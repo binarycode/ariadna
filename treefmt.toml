@@ -1,0 +1,28 @@
+on-unmatched = "error"
+
+excludes = [
+  "devbox.lock"
+]
+
+[formatter.just]
+command = "bin/justfmt.sh"
+includes = ["*/justfile", "*.just", "justfile"]
+
+[formatter.prettier]
+command = "prettier"
+options = ["--write", "--no-bracket-spacing"]
+includes = ["*.json", "*.md", "*.yaml"]
+
+[formatter.rustfmt]
+command = "rustfmt"
+includes = ["*.rs"]
+
+[formatter.shfmt]
+command = "shfmt"
+options = ["--write", "--indent", "2"]
+includes = [".envrc", ".gitignore", "bin/openspec"]
+
+[formatter.taplo]
+command = "taplo"
+options = ["format"]
+includes = ["*.toml"]
