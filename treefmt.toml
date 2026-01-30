@@ -10,12 +10,12 @@ includes = ["justfile"]
 [formatter.prettier]
 command = "prettier"
 options = ["--write", "--no-bracket-spacing"]
-includes = ["*.json", "*.yaml"]
+includes = ["*.json", "*.md", "*.yaml"]
 
 [formatter.shfmt]
 command = "shfmt"
 options = ["--write", "--indent", "2"]
-includes = [".envrc"]
+includes = [".envrc", "bin/openspec"]
 
 [formatter.taplo]
 command = "taplo"
