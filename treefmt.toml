@@ -1,0 +1,23 @@
+on-unmatched = "error"
+
+excludes = [".gitignore", "devbox.lock"]
+
+[formatter.just]
+command = "just"
+options = ["--unstable", "--fmt", "--justfile"]
+includes = ["justfile"]
+
+[formatter.prettier]
+command = "prettier"
+options = ["--write", "--no-bracket-spacing"]
+includes = ["*.json", "*.yaml"]
+
+[formatter.shfmt]
+command = "shfmt"
+options = ["--write", "--indent", "2"]
+includes = [".envrc"]
+
+[formatter.taplo]
+command = "taplo"
+options = ["format"]
+includes = ["*.toml"]
