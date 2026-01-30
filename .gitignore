@@ -12,3 +12,9 @@ Thumbs.db
 
 # Devbox artifact files
 .devbox/
+
+# Rust
+/target/
+
+# ESP-IDF
+.embuild/

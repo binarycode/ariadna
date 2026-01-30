@@ -1,9 +1,13 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.16.0/.schema/devbox.schema.json",
   "packages": [
+    "espup@latest",
     "just@latest",
+    "ldproxy@latest",
+    "libiconv@latest",
     "nodejs@latest",
     "prettier@latest",
+    "rustup@latest",
     "shfmt@latest",
     "taplo@latest",
     "treefmt@latest"
@@ -11,6 +15,12 @@
   "env": {
     "NPM_CONFIG_CACHE": "${PWD}/.devbox/npm-cache",
 
-    "PATH": "${PATH}:${PWD}/bin"
+    "PATH": "${PATH}:${PWD}/bin",
+
+    "ESPUP_EXPORT_FILE": "${PWD}/.devbox/export-esp.sh",
+    "RUSTUP_HOME": "${PWD}/.devbox/.rustup"
+  },
+  "shell": {
+    "init_hook": ["[ -f $ESPUP_EXPORT_FILE ] && . $ESPUP_EXPORT_FILE"]
   }
 }
