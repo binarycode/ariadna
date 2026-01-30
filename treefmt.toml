@@ -1,6 +1,6 @@
-on-unmatched = "error"
+on-unmatched = "fatal"
 
-excludes = [".gitignore", "devbox.lock"]
+excludes = [".gitignore", "devbox.lock", "LICENSE"]
 
 [formatter.just]
 command = "just"
