@@ -2,9 +2,15 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.16.0/.schema/devbox.schema.json",
   "packages": [
     "just@latest",
+    "nodejs@latest",
     "prettier@latest",
     "shfmt@latest",
     "taplo@latest",
     "treefmt@latest"
-  ]
+  ],
+  "env": {
+    "NPM_CONFIG_CACHE": "${PWD}/.devbox/npm-cache",
+
+    "PATH": "${PATH}:${PWD}/bin"
+  }
 }
