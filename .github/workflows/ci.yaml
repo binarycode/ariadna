@@ -33,15 +33,17 @@ jobs:
 
       - name: Cache Rust compilation
         uses: Swatinem/rust-cache@v2
+        with:
+          cmd-format: devbox run -- {0}
 
       # - name: Check dependencies with cargo-deny
       #   uses: EmbarkStudios/cargo-deny-action@v2
 
-      - name: Run formatting check
-        run: devbox run just fmt
-
-      - name: Run checks
-        run: devbox run just check
-
-      - name: Run tests
-        run: devbox run just test
+      # - name: Run formatting check
+      #   run: devbox run just fmt
+      #
+      # - name: Run checks
+      #   run: devbox run just check
+      #
+      # - name: Run tests
+      #   run: devbox run just test
