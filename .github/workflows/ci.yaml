@@ -52,11 +52,11 @@ jobs:
 
       - run: devbox run -- just init
 
-      # - name: Run formatting check
-      #   run: devbox run just fmt
-      #
-      # - name: Run checks
-      #   run: devbox run just check
-      #
-      # - name: Run tests
-      #   run: devbox run just test
+      - name: Run formatting check
+        run: devbox run just fmt
+
+      - name: Run checks
+        run: devbox run just check
+
+      - name: Run tests
+        run: devbox run just test
