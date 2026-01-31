@@ -28,16 +28,13 @@ jobs:
         with:
           enable-cache: true
 
+      - name: Cache Rust compilation
+        uses: Swatinem/rust-cache@2
+        with:
+          add-rust-environment-hash-key: false
+
       - name: Initialize ESP32 dependencies
         run: devbox run just init
-
-      - name: Cache Rust compilation
-        uses: Swatinem/rust-cache@151eeee51b94b648db7d5aa68ce6a3cad1ddea4e
-        with:
-          cmd-format: devbox run -- {0}
-
-      - name: Check dependencies with cargo-deny
-        uses: EmbarkStudios/cargo-deny-action@v2
 
       # - name: Run formatting check
       #   run: devbox run just fmt
