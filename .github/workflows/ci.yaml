@@ -32,7 +32,7 @@ jobs:
         run: devbox run just init
 
       - name: Cache Rust compilation
-        uses: Swatinem/rust-cache@v2
+        uses: Swatinem/rust-cache@11da8522bc3856a8fbc565f1d1530989c793d67d
         with:
           cmd-format: devbox run -- {0}
 
