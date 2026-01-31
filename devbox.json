@@ -10,7 +10,8 @@
     "rustup@latest",
     "shfmt@latest",
     "taplo@latest",
-    "treefmt@latest"
+    "treefmt@latest",
+    "gcc-unwrapped@latest"
   ],
   "env": {
     "NPM_CONFIG_CACHE": "${PWD}/.devbox/npm-cache",
@@ -18,7 +19,7 @@
     "PATH": "${PATH}:${PWD}/bin",
 
     "ESPUP_EXPORT_FILE": "${PWD}/.devbox/export-esp.sh",
-    "RUSTUP_HOME": "${PWD}/.devbox/.rustup"
+    "RUSTUP_HOME":       "${PWD}/.devbox/.rustup"
   },
   "shell": {
     "init_hook": [
