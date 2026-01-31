@@ -62,11 +62,7 @@ jobs:
           version: 1.0
 
       - name: Run checks
-        run: devbox run just check
-        env:
-          LD_LIBRARY_PATH: /usr/lib/x86_64-linux-gnu:${{ env.LD_LIBRARY_PATH }}
+        run: devbox run -- env LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu just check
 
       - name: Run tests
-        run: devbox run just test
-        env:
-          LD_LIBRARY_PATH: /usr/lib/x86_64-linux-gnu:${{ env.LD_LIBRARY_PATH }}
+        run: devbox run -- env LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu just test
