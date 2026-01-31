@@ -21,7 +21,7 @@ test:
     just ariadna::test
 
 install-esp32-toolchain:
-    espup install --std --targets esp32s3
+    espup install
 
 install-cargo-deny:
     cargo install --locked cargo-deny
