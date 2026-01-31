@@ -55,8 +55,18 @@ jobs:
       - name: Run formatting check
         run: devbox run just fmt
 
+      - name: Install C++ runtime for esp-clang
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: libstdc++6
+          version: 1.0
+
       - name: Run checks
         run: devbox run just check
+        env:
+          LD_LIBRARY_PATH: /usr/lib/x86_64-linux-gnu:${{ env.LD_LIBRARY_PATH }}
 
       - name: Run tests
         run: devbox run just test
+        env:
+          LD_LIBRARY_PATH: /usr/lib/x86_64-linux-gnu:${{ env.LD_LIBRARY_PATH }}
