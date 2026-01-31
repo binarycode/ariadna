@@ -19,7 +19,7 @@
     "PATH": "${PATH}:${PWD}/bin",
 
     "ESPUP_EXPORT_FILE": "${PWD}/.devbox/export-esp.sh",
-    "RUSTUP_HOME":       "${PWD}/.devbox/.rustup"
+    "RUSTUP_HOME": "${PWD}/.devbox/.rustup"
   },
   "shell": {
     "init_hook": [
