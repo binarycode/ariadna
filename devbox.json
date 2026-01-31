@@ -4,6 +4,7 @@
     "espup@latest",
     "just@latest",
     "ldproxy@latest",
+    "llvmPackages.libclang@latest",
     "libiconv@latest",
     "nodejs@latest",
     "prettier@latest",
@@ -18,11 +19,18 @@
     "PATH": "${PATH}:${PWD}/bin",
 
     "ESPUP_EXPORT_FILE": "${PWD}/.devbox/export-esp.sh",
-    "RUSTUP_HOME": "${PWD}/.devbox/.rustup"
-  },
+    "RUSTUP_HOME": "${PWD}/.devbox/.rustup",
+
+    },
   "shell": {
     "init_hook": [
-      "if [ -f \"$ESPUP_EXPORT_FILE\" ]; then . \"$ESPUP_EXPORT_FILE\"; fi"
-    ]
+      "if [ -f \"$ESPUP_EXPORT_FILE\" ]; then . \"$ESPUP_EXPORT_FILE\"; fi",
+      "export LIBCLANG_PATH=\"$(nix-store -qR \"$(which clang)\" 2>/dev/null | grep 'clang.*-lib$' | head -1)/lib\""
+    ],
+    "scripts": {
+      "check": "export LIBCLANG_PATH=$(nix-store -qR $(which clang) 2>/dev/null | grep 'clang.*-lib$' | head -1)/lib && just check",
+      "test": "export LIBCLANG_PATH=$(nix-store -qR $(which clang) 2>/dev/null | grep 'clang.*-lib$' | head -1)/lib && just test",
+      "fmt": "just fmt"
+    }
   }
 }

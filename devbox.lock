@@ -213,6 +213,12 @@
         }
       }
     },
+    "llvmPackages.libclang@latest": {
+      "last_modified": "2023-02-24T09:01:09Z",
+      "resolved": "github:NixOS/nixpkgs/7d0ed7f2e5aea07ab22ccb338d27fbe347ed2f11#llvmPackages.libclang",
+      "source": "devbox-search",
+      "version": "11.1.0"
+    },
     "nodejs@latest": {
       "last_modified": "2026-01-26T13:12:53Z",
       "plugin_version": "0.0.2",
