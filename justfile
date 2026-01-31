@@ -3,8 +3,7 @@ mod ariadna
 default:
     @just --list --unsorted
 
-init:
-    espup install --std --targets esp32s3
+init: install-esp32-toolchain install-cargo-deny
 
 fmt:
     treefmt --ci
@@ -20,3 +19,9 @@ build:
 
 test:
     just ariadna::test
+
+install-esp32-toolchain:
+    espup install --std --targets esp32s3
+
+install-cargo-deny:
+    cargo install --locked cargo-deny
