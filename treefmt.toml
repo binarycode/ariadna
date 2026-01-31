@@ -1,6 +1,12 @@
 on-unmatched = "fatal"
 
-excludes = [".gitignore", "devbox.lock", "Cargo.lock", "LICENSE"]
+excludes = [
+  ".gitignore",
+  "ariadna/sdkconfig.defaults",
+  "devbox.lock",
+  "Cargo.lock",
+  "LICENSE",
+]
 
 [formatter.just]
 command = "justfmt"
@@ -18,12 +24,7 @@ includes = ["*.rs"]
 [formatter.shfmt]
 command = "shfmt"
 options = ["--write", "--indent", "2"]
-includes = [
-  ".envrc",
-  "bin/justfmt",
-  "bin/openspec",
-  "ariadna/sdkconfig.defaults",
-]
+includes = [".envrc", "bin/justfmt", "bin/openspec"]
 
 [formatter.taplo]
 command = "taplo"

@@ -4,6 +4,7 @@
     "espup@latest",
     "just@latest",
     "ldproxy@latest",
+    "libiconv@latest",
     "nodejs@latest",
     "prettier@latest",
     "rustup@latest",
@@ -20,6 +21,8 @@
     "RUSTUP_HOME": "${PWD}/.devbox/.rustup"
   },
   "shell": {
-    "init_hook": ["[ -f \"$ESPUP_EXPORT_FILE\" ] && . \"$ESPUP_EXPORT_FILE\""]
+    "init_hook": [
+      "if [ -f \"$ESPUP_EXPORT_FILE\" ]; then . \"$ESPUP_EXPORT_FILE\"; fi"
+    ]
   }
 }
