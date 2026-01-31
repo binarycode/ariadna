@@ -37,7 +37,7 @@ jobs:
       - run: devbox run -- just install-esp32-toolchain
 
       - name: Cache Rust compilation
-        uses: Swatinem/rust-cache@v2
+        uses: Swatinem/rust-cache@151eeee51b94b648db7d5aa68ce6a3cad1ddea4e
         with:
           cmd-format: devbox run -- {0}
 
