@@ -14,11 +14,17 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: "0"
+  RUSTC_WRAPPER: sccache
+  SCCACHE_GHA_ENABLED: "true"
+
 jobs:
-  fmt:
-    name: Check Formatting
+  ci:
+    name: Build and Test
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout code
         uses: actions/checkout@v6.0.1
@@ -28,5 +34,27 @@ jobs:
         with:
           enable-cache: true
 
+      - name: Cache ESP32 toolchain
+        uses: actions/cache@v5
+        with:
+          path: .devbox/.rustup/toolchains
+          key: v0-rust-esp-toolchain
+
+      - run: devbox run -- just init
+
+      - name: Cache Rust compilation
+        uses: Swatinem/rust-cache@151eeee51b94b648db7d5aa68ce6a3cad1ddea4e
+        with:
+          cmd-format: devbox run -- {0}
+
+      - name: Run sccache-cache
+        uses: mozilla-actions/sccache-action@v0.0.9
+
       - name: Run formatting check
-        run: devbox run just fmt
+        run: devbox run -- just fmt
+
+      - name: Run checks
+        run: devbox run -- just check
+
+      - name: Run tests
+        run: devbox run -- just test
