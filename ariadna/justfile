@@ -1,0 +1,16 @@
+default:
+    @just --list --unsorted
+
+clean:
+    cargo clean
+
+check:
+    cargo deny check
+    cargo check --target xtensa-esp32s3-espidf
+    cargo clippy --target xtensa-esp32s3-espidf
+
+build:
+    cargo build --target xtensa-esp32s3-espidf
+
+test:
+    cargo test

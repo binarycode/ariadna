@@ -1,16 +1,38 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.16.0/.schema/devbox.schema.json",
-  "packages": [
-    "just@latest",
-    "nodejs@latest",
-    "prettier@latest",
-    "shfmt@latest",
-    "taplo@latest",
-    "treefmt@latest"
-  ],
+  "packages": {
+    "cargo-deny": "latest",
+    "espup": "latest",
+    "github:NixOS/nixpkgs/nixos-22.11#libxml2.out": {
+      "platforms": ["x86_64-linux"]
+    },
+    "github:NixOS/nixpkgs/nixos-25.11#stdenv.cc.cc.lib": {
+      "platforms": ["x86_64-linux"]
+    },
+    "just": "latest",
+    "ldproxy": "latest",
+    "libiconv": {
+      "version": "latest",
+      "platforms": ["aarch64-darwin"]
+    },
+    "nodejs": "latest",
+    "prettier": "latest",
+    "rustup": "latest",
+    "shfmt": "latest",
+    "taplo": "latest",
+    "treefmt": "latest"
+  },
   "env": {
-    "NPM_CONFIG_CACHE": "${PWD}/.devbox/npm-cache",
-
-    "PATH": "${PATH}:${PWD}/bin"
+    "CARGO_HOME": "${DEVBOX_WD}/.devbox/.cargo",
+    "ESPUP_EXPORT_FILE": "${DEVBOX_WD}/.devbox/export-esp.sh",
+    "LD_LIBRARY_PATH": "${DEVBOX_PACKAGES_DIR}/lib:${LD_LIBRARY_PATH}",
+    "NPM_CONFIG_CACHE": "${DEVBOX_WD}/.devbox/npm-cache",
+    "PATH": "${PATH}:${DEVBOX_WD}/bin",
+    "RUSTUP_HOME": "${DEVBOX_WD}/.devbox/.rustup"
+  },
+  "shell": {
+    "init_hook": [
+      "if [ -f \"$ESPUP_EXPORT_FILE\" ]; then . \"$ESPUP_EXPORT_FILE\"; fi"
+    ]
   }
 }

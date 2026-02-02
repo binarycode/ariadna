@@ -1,21 +1,30 @@
 on-unmatched = "fatal"
 
-excludes = [".gitignore", "devbox.lock", "LICENSE"]
+excludes = [
+  ".gitignore",
+  "ariadna/sdkconfig.defaults",
+  "devbox.lock",
+  "Cargo.lock",
+  "LICENSE",
+]
 
 [formatter.just]
-command = "just"
-options = ["--unstable", "--fmt", "--justfile"]
-includes = ["justfile"]
+command = "justfmt"
+includes = ["*/justfile", "justfile"]
 
 [formatter.prettier]
 command = "prettier"
 options = ["--write", "--no-bracket-spacing"]
 includes = ["*.json", "*.md", "*.yaml"]
 
+[formatter.rustfmt]
+command = "rustfmt"
+includes = ["*.rs"]
+
 [formatter.shfmt]
 command = "shfmt"
 options = ["--write", "--indent", "2"]
-includes = [".envrc", "bin/openspec"]
+includes = [".envrc", "bin/justfmt", "bin/openspec"]
 
 [formatter.taplo]
 command = "taplo"
