@@ -2,7 +2,7 @@ on-unmatched = "fatal"
 
 excludes = [
   ".gitignore",
-  "ariadna/sdkconfig.defaults",
+  "sdkconfig.defaults",
   "devbox.lock",
   "Cargo.lock",
   "LICENSE",

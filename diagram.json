@@ -11,23 +11,21 @@
       "attrs": {"serialInterface": "USB_SERIAL_JTAG"}
     },
     {
-      "type": "wokwi-led",
-      "id": "led1",
-      "top": 100,
+      "type": "wokwi-ili9341",
+      "id": "lcd",
+      "top": -150,
       "left": 200,
-      "attrs": {"color": "green"}
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r1",
-      "top": 130,
-      "left": 150,
-      "attrs": {"value": "220"}
+      "attrs": {}
     }
   ],
   "connections": [
-    ["esp:4", "r1:1", "green", []],
-    ["r1:2", "led1:A", "green", []],
-    ["led1:C", "esp:GND.1", "black", []]
+    ["esp:GND.1", "lcd:GND", "black", []],
+    ["esp:3V3", "lcd:VCC", "red", []],
+    ["esp:12", "lcd:SCK", "orange", []],
+    ["esp:11", "lcd:MOSI", "yellow", []],
+    ["esp:10", "lcd:CS", "green", []],
+    ["esp:9", "lcd:D/C", "blue", []],
+    ["esp:8", "lcd:RST", "purple", []],
+    ["esp:3V3", "lcd:LED", "red", []]
   ]
 }
