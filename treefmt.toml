@@ -1,6 +1,7 @@
 on-unmatched = "fatal"
 
 excludes = [
+  "*.bin",
   ".gitignore",
   "sdkconfig.defaults",
   "devbox.lock",
