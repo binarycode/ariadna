@@ -1,13 +1,13 @@
 #[cfg(target_arch = "xtensa")]
 use display_interface_spi::SPIInterface;
 #[cfg(target_arch = "xtensa")]
+use embedded_graphics::image::ImageRaw;
+#[cfg(target_arch = "xtensa")]
+use embedded_graphics::image::ImageRawLE;
+#[cfg(target_arch = "xtensa")]
 use embedded_graphics::pixelcolor::Rgb565;
 #[cfg(target_arch = "xtensa")]
 use embedded_graphics::prelude::*;
-#[cfg(target_arch = "xtensa")]
-use embedded_graphics::primitives::PrimitiveStyle;
-#[cfg(target_arch = "xtensa")]
-use embedded_graphics::primitives::Rectangle;
 #[cfg(target_arch = "xtensa")]
 use esp_idf_hal::delay::FreeRtos;
 #[cfg(target_arch = "xtensa")]
@@ -24,6 +24,8 @@ use esp_idf_hal::spi::config::Config;
 use esp_idf_hal::units::FromValueType;
 #[cfg(target_arch = "xtensa")]
 use mipidsi::Builder;
+#[cfg(target_arch = "xtensa")]
+use mipidsi::options::ColorOrder;
 #[cfg(target_arch = "xtensa")]
 use mipidsi::options::Orientation;
 #[cfg(target_arch = "xtensa")]
@@ -68,39 +70,37 @@ fn main() {
         // Initialize display
         let mut display = Builder::new(mipidsi::models::ILI9341Rgb565, di)
             .reset_pin(rst)
-            .orientation(Orientation::new())
+            .orientation(Orientation::new().flip_horizontal())
+            .color_order(ColorOrder::Bgr)
             .init(&mut FreeRtos)
             .expect("Failed to init display");
 
-        log::info!("Display initialized, starting color cycle");
+        log::info!("Display initialized");
 
         let mut led = Ws2812Esp32RmtDriver::new(peripherals.rmt.channel0, peripherals.pins.gpio38)
             .expect("Failed to init WS2812 LED");
         log::info!("WS2812 LED initialized on GPIO38");
 
-        let colors = [
-            (Rgb565::RED, 255, 0, 0),
-            (Rgb565::GREEN, 0, 255, 0),
-            (Rgb565::BLUE, 0, 0, 255),
-        ];
-        let color_names = ["RED", "GREEN", "BLUE"];
+        // Blue light before drawing
+        let blue = LedPixelColorGrb24::new_with_rgb(0, 0, 255);
+        led.write_blocking(blue.as_ref().iter().copied())
+            .expect("Failed to write LED");
+        log::info!("Drawing map...");
 
-        let mut idx = 0;
+        // Load and draw the RGB565 map data (240x320, little-endian)
+        const MAP_DATA: &[u8] = include_bytes!("../map.bin");
+        let raw_image: ImageRawLE<Rgb565> = ImageRaw::new(MAP_DATA, 240);
+
+        raw_image.draw(&mut display).expect("Failed to draw map");
+
+        // Green light after drawing
+        let green = LedPixelColorGrb24::new_with_rgb(0, 255, 0);
+        led.write_blocking(green.as_ref().iter().copied())
+            .expect("Failed to write LED");
+        log::info!("Map displayed");
+
         loop {
-            let (display_color, r, g, b) = colors[idx];
-            log::info!("Filling display with {}", color_names[idx]);
-
-            let pixel = LedPixelColorGrb24::new_with_rgb(r, g, b);
-            led.write_blocking(pixel.as_ref().iter().copied())
-                .expect("Failed to write LED");
-
-            Rectangle::new(Point::zero(), display.bounding_box().size)
-                .into_styled(PrimitiveStyle::with_fill(display_color))
-                .draw(&mut display)
-                .expect("Failed to draw");
-
-            idx = (idx + 1) % colors.len();
-            FreeRtos::delay_ms(2000);
+            FreeRtos::delay_ms(1000);
         }
     }
 
