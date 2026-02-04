@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "name": "GNSS Emulator",
+  "author": "Igor Sidorov",
+  "license": "MIT",
+  "pins": ["", "RX", "TX", "", "", "", "", ""]
+}

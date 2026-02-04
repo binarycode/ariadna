@@ -1,4 +1,0 @@
-[wokwi]
-version = 1
-elf = 'target/xtensa-esp32s3-espidf/debug/ariadna'
-firmware = 'target/xtensa-esp32s3-espidf/debug/ariadna'

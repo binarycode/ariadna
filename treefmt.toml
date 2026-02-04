@@ -3,8 +3,8 @@ on-unmatched = "fatal"
 excludes = [
   "*.bin",
   ".gitignore",
-  "sdkconfig.defaults",
   "devbox.lock",
+  "firmware/ariadna/sdkconfig.defaults",
   "Cargo.lock",
   "LICENSE",
 ]

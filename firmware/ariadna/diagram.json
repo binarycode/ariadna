@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "author": "Igor Sidorov",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {"serialInterface": "USB_SERIAL_JTAG"}
+    },
+    {
+      "type": "wokwi-ili9341",
+      "id": "lcd",
+      "top": 0,
+      "left": -232,
+      "attrs": {}
+    },
+    {
+      "type": "chip-gnss-emulator",
+      "id": "gnss",
+      "top": 20,
+      "left": 110,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    ["esp:14", "lcd:CS", "gold", ["h-14.68", "v134.22", "h-162.9"]],
+    ["esp:13", "lcd:RST", "gold", ["h-24.28", "v134.22", "h-143.7"]],
+    ["esp:12", "lcd:D/C", "gold", ["h-33.88", "v134.22", "h-124.5"]],
+    ["esp:11", "lcd:MOSI", "gold", ["h-43.48", "v134.22", "h-105.29"]],
+    ["esp:10", "lcd:SCK", "gold", ["h-53.08", "v134.22", "h-86.09"]],
+    ["esp:TX", "gnss:RX", "gold", []],
+    ["esp:RX", "gnss:TX", "gold", []]
+  ]
+}

@@ -1,0 +1,5 @@
+[target.wasm32-unknown-unknown]
+rustflags = ["-Clink-arg=--export-table", "-Clink-arg=--strip-debug"]
+
+[unstable]
+build-std = ["std", "panic_abort"]
