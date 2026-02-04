@@ -1,0 +1,16 @@
+[package]
+name = "gnss-emulator"
+version.workspace = true
+publish = false
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wokwi_chip_ll = "0.2"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
+mockall = "0.14"

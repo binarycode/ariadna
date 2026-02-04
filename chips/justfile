@@ -1,0 +1,16 @@
+mod gnss-emulator
+
+default:
+    @just --list --unsorted
+
+clean:
+    just gnss-emulator::clean
+
+check:
+    just gnss-emulator::check
+
+build:
+    just gnss-emulator::build
+
+test:
+    just gnss-emulator::test

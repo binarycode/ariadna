@@ -10,7 +10,7 @@ check:
     cargo clippy --target xtensa-esp32s3-espidf
 
 build:
-    cargo build --target xtensa-esp32s3-espidf
+    ESP_IDF_SDKCONFIG_DEFAULTS="${DEVBOX_WD}/firmware/ariadna/sdkconfig.defaults" cargo build --target xtensa-esp32s3-espidf
 
 test:
     cargo test

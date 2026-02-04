@@ -1,0 +1,16 @@
+mod ariadna
+
+default:
+    @just --list --unsorted
+
+clean:
+    just ariadna::clean
+
+check:
+    just ariadna::check
+
+build:
+    just ariadna::build
+
+test:
+    just ariadna::test

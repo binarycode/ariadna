@@ -1,4 +1,5 @@
-mod ariadna
+mod firmware
+mod chips
 
 default:
     @just --list --unsorted
@@ -9,16 +10,20 @@ fmt:
     treefmt --ci
 
 clean:
-    just ariadna::clean
+    just firmware::clean
+    just chips::clean
 
 check:
-    just ariadna::check
+    just firmware::check
+    just chips::check
 
 build:
-    just ariadna::build
+    just firmware::build
+    just chips::build
 
 test:
-    just ariadna::test
+    just firmware::test
+    just chips::test
 
 install-esp32-toolchain:
     espup install --std --targets esp32s3
