@@ -1,5 +1,5 @@
 [package]
-name = "ariadna"
+name = "poc"
 version.workspace = true
 publish = false
 edition.workspace = true
@@ -16,6 +16,10 @@ esp-idf-svc = { version = "0.51", features = [
 ] }
 esp-idf-hal = "0.45"
 esp-idf-sys = { version = "0.36", features = ["binstart"] }
+display-interface-spi = "0.5"
+mipidsi = "0.8"
+embedded-graphics = "0.8"
+ws2812-esp32-rmt-driver = "0.13"
 
 [build-dependencies]
 embuild = { version = "0.33", features = ["espidf"] }

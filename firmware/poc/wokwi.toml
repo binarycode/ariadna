@@ -1,7 +1,7 @@
 [wokwi]
 version = 1
-elf = "../../target/xtensa-esp32s3-espidf/debug/ariadna"
-firmware = "../../target/xtensa-esp32s3-espidf/debug/ariadna"
+elf = "../../target/xtensa-esp32s3-espidf/debug/poc"
+firmware = "../../target/xtensa-esp32s3-espidf/debug/poc"
 
 [[chip]]
 name = "gnss-emulator"

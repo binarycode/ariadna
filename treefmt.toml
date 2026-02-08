@@ -5,6 +5,7 @@ excludes = [
   ".gitignore",
   "devbox.lock",
   "firmware/ariadna/sdkconfig.defaults",
+  "firmware/poc/sdkconfig.defaults",
   "Cargo.lock",
   "LICENSE",
 ]
