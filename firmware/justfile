@@ -1,16 +1,21 @@
 mod ariadna
+mod poc
 
 default:
     @just --list --unsorted
 
 clean:
     just ariadna::clean
+    just poc::clean
 
 check:
     just ariadna::check
+    just poc::check
 
 build:
     just ariadna::build
+    just poc::build
 
 test:
     just ariadna::test
+    just poc::test
