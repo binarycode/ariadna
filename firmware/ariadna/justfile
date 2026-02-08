@@ -6,7 +6,9 @@ clean:
 
 check:
     cargo deny check
+    cargo check
     cargo check --target xtensa-esp32s3-espidf
+    cargo clippy
     cargo clippy --target xtensa-esp32s3-espidf
 
 build:
