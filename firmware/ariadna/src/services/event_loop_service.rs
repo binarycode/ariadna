@@ -61,3 +61,24 @@ mod tests {
         assert_eq!(result, Err(Error::ReceiveError(std::sync::mpsc::RecvError)));
     }
 }
+
+#[cfg(test)]
+pub mod mocks {
+    use super::*;
+
+    mockall::mock! {
+        pub EventLoopService {}
+        impl EventLoopServiceInterface for EventLoopService {
+            fn run(&self, rx: Receiver<Event>) -> Result<(), Error>;
+        }
+    }
+
+    impl<M: shaku::Module> shaku::Component<M> for MockEventLoopService {
+        type Interface = dyn EventLoopServiceInterface;
+        type Parameters = ();
+
+        fn build(_: &mut shaku::ModuleBuildContext<M>, _: Self::Parameters) -> Box<Self::Interface> {
+            Box::new(Self::default())
+        }
+    }
+}

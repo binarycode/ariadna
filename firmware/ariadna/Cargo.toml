@@ -19,5 +19,8 @@ esp-idf-svc = { version = "0.51", features = [
 esp-idf-hal = "0.45"
 esp-idf-sys = { version = "0.36", features = ["binstart"] }
 
+[dev-dependencies]
+mockall = "0.14"
+
 [build-dependencies]
 embuild = { version = "0.33", features = ["espidf"] }

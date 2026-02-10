@@ -56,6 +56,7 @@ dependencies = [
  "esp-idf-svc",
  "esp-idf-sys",
  "log",
+ "mockall",
  "shaku",
  "thiserror 1.0.69",
 ]

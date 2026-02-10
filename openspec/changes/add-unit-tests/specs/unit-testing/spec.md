@@ -68,4 +68,3 @@ The main function orchestration logic SHALL be extracted into a MainService comp
 - **WHEN** MainService.run() is called
 - **THEN** it SHALL create the channel internally (Sender/Receiver pair)
 - **AND** pass the Receiver to EventLoopService.run()
-- **AND** return the Sender for external use

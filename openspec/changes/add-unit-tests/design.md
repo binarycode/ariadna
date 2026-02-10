@@ -31,7 +31,7 @@ The `main()` function contains orchestration logic (init → run → halt) that 
 
 - Takes `Esp32ServiceInterface` and `EventLoopServiceInterface` as dependencies
 - Owns channel creation internally (creates both Sender and Receiver in `run()`)
-- Exposes `run(&self) -> Sender<Event>` that creates the channel, runs the orchestration, and returns the sender for external use
+- Exposes `run(&self)` that creates the channel, runs the orchestration
 
 **Rationale**: The orchestration logic (init → run → halt) is currently in `main()` which cannot be unit tested. Extracting to a service allows DI-based testing. Having MainService own channel creation internally ensures full encapsulation and simplifies `main()` to just calling `run()`.
 
