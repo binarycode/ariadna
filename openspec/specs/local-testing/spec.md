@@ -47,3 +47,22 @@ Tests SHALL call functions that contain target-conditional code. The host fallba
 #### Guidance: Do not skip testing target-conditional code
 
 When writing tests for code that has xtensa-specific behavior (e.g., `halt()` with infinite loop), the test SHOULD call the function normally. The host fallback will execute, allowing verification of the code path. Do NOT write tests that merely instantiate objects without exercising their methods due to assumptions about target execution.
+
+### Requirement: Mock-based service testing
+
+Service tests requiring dependency mocking SHALL use mockall with shaku Component integration to enable DI-based test modules.
+
+#### Scenario: Mock service dependency
+
+- **WHEN** testing a service that depends on another service interface
+- **THEN** the test SHALL use a mockall-generated mock implementing the interface
+- **AND** the mock SHALL be wired into a test-specific shaku module
+
+### Requirement: Dev dependency for mocking
+
+The ariadna crate SHALL include mockall as a dev-dependency to enable mock generation in tests.
+
+#### Scenario: Mockall available in tests
+
+- **WHEN** running `cargo test -p ariadna`
+- **THEN** mockall macros are available for generating mocks
