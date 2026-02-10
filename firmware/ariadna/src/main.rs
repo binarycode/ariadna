@@ -1,19 +1,14 @@
-#[cfg(target_arch = "xtensa")]
-use esp_idf_hal::delay::FreeRtos;
+mod app_module;
+mod event;
+mod services;
+
+use shaku::HasComponent;
 
 fn main() {
-    #[cfg(target_arch = "xtensa")]
-    {
-        esp_idf_svc::sys::link_patches();
-        esp_idf_svc::log::EspLogger::initialize_default();
+    let module = app_module::AppModule::builder().build();
+    let (_tx, rx) = std::sync::mpsc::channel();
 
-        loop {
-            FreeRtos::delay_ms(1000);
-        }
-    }
+    let event_loop_service: std::sync::Arc<dyn services::EventLoopServiceInterface> = module.resolve();
 
-    #[cfg(not(target_arch = "xtensa"))]
-    {
-        log::info!("This code is meant to run on ESP32");
-    }
+    event_loop_service.run(rx).unwrap();
 }
