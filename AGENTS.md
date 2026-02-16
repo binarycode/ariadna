@@ -1,11 +1,25 @@
 # Ariadna
 
-ESP32-S3 firmware project.
+Simple GNSS navigation device based on ESP32-S3.
+
+## Project Structure
+
+- `firmware/ariadna/` - Main ESP32-S3 firmware (Xtensa target)
+- `chips/gnss-emulator/` - GNSS emulator (WebAssembly target)
 
 ## Commands
 
-- **Build**: `just build`
-- **Check**: `just check`
+### firmware/ariadna
+```bash
+just firmware::ariadna::check            # Check compilation
+just firmware::ariadna::test [TEST_NAME] # Run all tests, or specific test/pattern
+```
+
+### chips/gnss-emulator
+```bash
+just chips::gnss-emulator::check            # Check compilation
+just chips::gnss-emulator::test [TEST_NAME] # Run all tests, or specific test/pattern
+```
 
 ## Code Conventions
 

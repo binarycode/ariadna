@@ -10,7 +10,6 @@ mod service;
 pub use error::*;
 pub use interface::*;
 #[cfg(test)]
-#[expect(unused_imports)]
 pub use mock_service::*;
 #[cfg(not(target_arch = "xtensa"))]
 pub use no_op_service::*;
