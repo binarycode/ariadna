@@ -14,5 +14,5 @@ check:
 build:
     ESP_IDF_SDKCONFIG_DEFAULTS="{{justfile_directory()}}/sdkconfig.defaults" cargo build --target xtensa-esp32s3-espidf
 
-test:
-    cargo test
+test *ARGS:
+    cargo test {{ARGS}}

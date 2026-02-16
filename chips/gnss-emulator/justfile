@@ -12,5 +12,5 @@ check:
 build:
     cargo build --release --target wasm32-unknown-unknown
 
-test:
-    cargo test
+test *ARGS:
+    cargo test {{ARGS}}
