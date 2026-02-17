@@ -17,6 +17,7 @@ shaku::module! {
             gnss::monitor_service::Service,
             gnss::uart_service::Service,
             utils::introspect_state_service::Service,
+            utils::log_service::Service,
         ],
         providers = []
     }
@@ -41,6 +42,6 @@ fn main() {
     let module = builder.build();
 
     if let Err(e) = HasComponent::<dyn core::main_service::Interface>::resolve(&module).execute() {
-        log::error!("Error in main: {e:?}");
+        HasComponent::<dyn utils::log_service::Interface>::resolve(&module).error(&format!("Error in main: {e:?}"));
     }
 }
