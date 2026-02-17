@@ -10,12 +10,14 @@ Simple GNSS navigation device based on ESP32-S3.
 ## Commands
 
 ### firmware/ariadna
+
 ```bash
 just firmware::ariadna::check            # Check compilation
 just firmware::ariadna::test [TEST_NAME] # Run all tests, or specific test/pattern
 ```
 
 ### chips/gnss-emulator
+
 ```bash
 just chips::gnss-emulator::check            # Check compilation
 just chips::gnss-emulator::test [TEST_NAME] # Run all tests, or specific test/pattern
