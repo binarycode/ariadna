@@ -11,6 +11,9 @@ repository = "https://github.com/binarycode/ariadna"
 description = "Simple navigation gadget"
 readme = "README.md"
 
+[workspace.dependencies]
+mockall = "0.14"
+
 [profile.release]
 lto = true
 
