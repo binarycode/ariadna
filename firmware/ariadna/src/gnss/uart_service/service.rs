@@ -31,7 +31,7 @@ impl Service {
             Option::<AnyIOPin>::None,
             &config,
         )
-        .unwrap(); // TODO
+        .unwrap();
         let reader = BufReader::new(ToStd::new(driver));
 
         ServiceParameters {
@@ -45,7 +45,7 @@ impl crate::gnss::uart_service::Interface for Service {
         let mut guard = self
             .reader
             .lock()
-            .map_err(|_| crate::gnss::uart_service::Error::PoisonedMutex)?; // TODO
+            .map_err(|_| crate::gnss::uart_service::Error::PoisonedMutex)?;
 
         let reader = guard.as_mut().ok_or(crate::gnss::uart_service::Error::NotInitialized)?;
 

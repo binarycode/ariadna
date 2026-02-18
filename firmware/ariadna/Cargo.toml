@@ -22,7 +22,7 @@ esp-idf-sys = { version = "0.36", features = ["binstart"] }
 embedded-io-adapters = { version = "0.6", features = ["std"] }
 
 [dev-dependencies]
-mockall = { version = "0.14", features = ["nightly"] }
+mockall = { workspace = true, features = ["nightly"] }
 
 [build-dependencies]
 embuild = { version = "0.33", features = ["espidf"] }
