@@ -8,18 +8,20 @@ authors.workspace = true
 
 [dependencies]
 log = "0.4"
+nmea = "0.7"
 shaku = "0.6"
 thiserror = "1.0"
-nmea = "0.7"
 
 [target.'cfg(target_arch = "xtensa")'.dependencies]
+embedded-io-adapters = { version = "0.6", features = ["std"] }
+embedded-graphics = "0.8"
 esp-idf-svc = { version = "0.51", features = [
   "critical-section",
   "embassy-sync",
 ] }
 esp-idf-hal = "0.45"
 esp-idf-sys = { version = "0.36", features = ["binstart"] }
-embedded-io-adapters = { version = "0.6", features = ["std"] }
+mipidsi = "0.10"
 
 [dev-dependencies]
 mockall = { workspace = true, features = ["nightly"] }

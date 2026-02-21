@@ -16,6 +16,7 @@ shaku::module! {
             esp32::halt_service::Service,
             gnss::monitor_service::Service,
             gnss::uart_service::Service,
+            utils::display_service::Service,
             utils::introspect_state_service::Service,
             utils::log_service::Service,
         ],
@@ -38,6 +39,16 @@ fn main() {
             peripherals.pins.gpio44,
         );
         builder = builder.with_component_parameters::<gnss::uart_service::Service>(parameters);
+
+        let parameters = utils::display_service::Service::build_parameters(
+            peripherals.spi2,
+            peripherals.pins.gpio10,
+            peripherals.pins.gpio11,
+            peripherals.pins.gpio12,
+            peripherals.pins.gpio13,
+            peripherals.pins.gpio14,
+        );
+        builder = builder.with_component_parameters::<utils::display_service::Service>(parameters);
     }
     let module = builder.build();
 
